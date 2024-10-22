@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:taskmanager/assets_path.dart';
+import 'package:taskmanager/Utils/assets_path.dart';
+import 'package:taskmanager/screens/sing_in_screen.dart';
 
 import '../widget/screen_background.dart';
 
@@ -13,6 +14,19 @@ class SplashScreens extends StatefulWidget {
 }
 
 class _SplashScreensState extends State<SplashScreens> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _moveToNextScreen();
+  }
+
+  Future<void>_moveToNextScreen() async{
+    await Future.delayed( Duration(seconds: 2));
+    Navigator.pushReplacement(context, MaterialPageRoute(
+        builder: (context)=> sing_in_screen()));
+  }
   @override
   Widget build(BuildContext context) {
     return  Scaffold(

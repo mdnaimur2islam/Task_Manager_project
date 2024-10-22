@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../assets_path.dart';
+import '../Utils/assets_path.dart';
 
 class ScreenBackground extends StatelessWidget
 {
@@ -17,7 +17,7 @@ class ScreenBackground extends StatelessWidget
           height: screenSize.height,
           width:screenSize.width,
         ),
-        child,
+        SafeArea(child: child),
       ],
 
     );
