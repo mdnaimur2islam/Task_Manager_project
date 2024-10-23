@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:taskmanager/Utils/app_colors.dart';
 import 'package:taskmanager/screens/forgot_password_email_screen.dart';
+import 'package:taskmanager/screens/main_bottom_navbar.dart';
 import 'package:taskmanager/screens/sing_up_Screen.dart';
 import 'package:taskmanager/widget/screen_background.dart';
 
@@ -108,7 +109,10 @@ class _sing_in_screenState extends State<sing_in_screen> {
   }
 
   void _OnTapNextButton(){
-    //TODO:
+    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const main_bottom_navbar(),
+    ),
+        (value)=>false,
+    );
   }
   void _OnTapForgotPasswordButton(){
     Navigator.push(context, MaterialPageRoute(builder: (context)=> const Forgot_password_emailScreen(),
