@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:taskmanager/Utils/assets_path.dart';
+import 'package:taskmanager/data/ui/controllers/auth_controller.dart';
+import 'package:taskmanager/screens/main_bottom_navbar.dart';
 import 'package:taskmanager/screens/sing_in_screen.dart';
 
 import '../widget/screen_background.dart';
@@ -22,10 +24,17 @@ class _SplashScreensState extends State<SplashScreens> {
     _moveToNextScreen();
   }
 
-  Future<void>_moveToNextScreen() async{
-    await Future.delayed( Duration(seconds: 2));
-    Navigator.pushReplacement(context, MaterialPageRoute(
-        builder: (context)=> sing_in_screen()));
+  Future<void>_moveToNextScreen() async {
+    await Future.delayed(Duration(seconds: 2));
+    await authcontrollers.getAccessToken();
+    if (authcontrollers.isLoggedIn()) {
+      Navigator.pushReplacement(context, MaterialPageRoute(
+          builder: (context) => main_bottom_navbar()));
+      }
+    else{
+      Navigator.pushReplacement(context, MaterialPageRoute(
+          builder: (context) => sing_in_screen()));
+    }
   }
   @override
   Widget build(BuildContext context) {
