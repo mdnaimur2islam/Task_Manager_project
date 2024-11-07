@@ -35,15 +35,15 @@ class TMAppBar extends StatelessWidget implements PreferredSizeWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'MD Naimur Islam Nissan',
-                      style: TextStyle(
+                      authcontrollers.userData?.fullName??'',
+                      style:const TextStyle(
                           fontSize: 16,
                           color: Colors.white,
                           fontWeight: FontWeight.w500),
                     ),
                     Text(
-                      'mdnaimur122@gmail.com',
-                      style: TextStyle(
+                      authcontrollers.userData?.email??'',
+                      style:const TextStyle(
                         fontSize: 12,
                         color: Colors.white,
                       ),

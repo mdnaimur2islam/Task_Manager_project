@@ -12,8 +12,11 @@ class network_caller {
   static Future<network_response> getRequest({required String url}) async {
     try {
       Uri uri = Uri.parse(url);
-      debugPrint(url);
-      final Response response = await get(uri);
+      Map<String, String> headers = {
+        'token': authcontrollers.accessToken.toString(),
+      };
+      printRequest(url, null, headers);
+      final Response response = await get(uri,headers: headers);
       PrintResponse(url, response);
       if (response.statusCode == 200) {
         final decodeData = jsonDecode(response.body);

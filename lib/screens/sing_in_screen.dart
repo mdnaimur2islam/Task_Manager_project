@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:taskmanager/Utils/app_colors.dart';
 import 'package:taskmanager/data/Utils/snack_bar_message.dart';
 import 'package:taskmanager/data/Utils/uris.dart';
+import 'package:taskmanager/data/models/LoginModel.dart';
 import 'package:taskmanager/data/models/network_response.dart';
 import 'package:taskmanager/data/services/network_caller.dart';
 import 'package:taskmanager/data/ui/controllers/auth_controller.dart';
@@ -163,7 +164,9 @@ class _sing_in_screenState extends State<sing_in_screen> {
     _inProgress=false;
     setState(() {});
     if(response.isSuccess){
-      await authcontrollers.saveAccessToken(response.responseData['token']);
+      LoginModel loginModel=LoginModel.fromJson(response.responseData);
+      await authcontrollers.saveAccessToken(loginModel.token!);
+      await authcontrollers.saveUserData(loginModel.data!);
       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const main_bottom_navbar(),
       ),
             (value)=>false,
