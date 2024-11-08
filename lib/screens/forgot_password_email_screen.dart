@@ -1,6 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:taskmanager/Utils/app_colors.dart';
+import 'package:taskmanager/data/Utils/uris.dart';
+import 'package:taskmanager/data/models/UserModel.dart';
+import 'package:taskmanager/data/models/network_response.dart';
+import 'package:taskmanager/data/services/network_caller.dart';
+import 'package:taskmanager/data/ui/controllers/auth_controller.dart';
 import 'package:taskmanager/screens/forgot_password_otp_screen.dart';
 import 'package:taskmanager/widget/screen_background.dart';
 
@@ -12,6 +17,11 @@ class Forgot_password_emailScreen extends StatefulWidget {
 }
 
 class _Forgot_password_emailScreenState extends State<Forgot_password_emailScreen> {
+  final TextEditingController _emailTEController=TextEditingController();
+
+  @override
+
+
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -64,16 +74,27 @@ class _Forgot_password_emailScreenState extends State<Forgot_password_emailScree
     return Column(
       children: [
         TextFormField(
+          controller: _emailTEController,
             keyboardType: TextInputType.emailAddress,
             decoration:const InputDecoration(
                 hintText: 'Email'
-            )
+            ),
+          validator: (String? value) {
+            if (value?.trim().isEmpty ?? true) {
+              return 'Enter your email';
+            }
+            return null;
+          },
         ),
 
         const SizedBox(height: 16),
         ElevatedButton(
 
-            onPressed: _OnTapNextButton,
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Forgot_password_OTP_Screen(),
+              ),
+              );
+            },
             child: const Icon(Icons.arrow_forward_rounded)
         ),
       ],
@@ -101,11 +122,7 @@ class _Forgot_password_emailScreenState extends State<Forgot_password_emailScree
     )
     );
   }
-  void _OnTapNextButton(){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>Forgot_password_OTP_Screen(),
-    ),
-    );
-  }
+
 
   void _onTapSingIn(){
     Navigator.pop(context);

@@ -28,10 +28,12 @@ class _progress_task_screenState extends State<progress_task_screen> {
     return  Visibility(
       visible: !_getProgressTaskListInProgress,
       replacement: RefreshIndicator(
-          onRefresh:() async{
-            _getProgressTask();
-          },
-          child: CircularProgressIndicator()),
+            onRefresh:() async{
+              _getProgressTask();
+            },
+            child: CircularProgressIndicator()
+      ),
+
       child: ListView.separated(
         itemBuilder: (context, index) {
           return  TaskCard(

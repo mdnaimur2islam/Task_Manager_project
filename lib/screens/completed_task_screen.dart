@@ -28,10 +28,14 @@ class _completed_task_screenState extends State<completed_task_screen> {
     return  Visibility(
       visible: !_getCompletedTaskListInProgress,
       replacement: RefreshIndicator(
-        onRefresh:() async{
-          _getCompletedTask();
-        },
-          child: CircularProgressIndicator()),
+          onRefresh:() async{
+            _getCompletedTask();
+          },
+            
+              child: CircularProgressIndicator(),
+            
+        ),
+
       child: ListView.separated(
         itemBuilder: (context, index) {
           return  TaskCard(

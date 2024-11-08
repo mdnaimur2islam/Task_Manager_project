@@ -28,10 +28,11 @@ class _cancelled_task_screenState extends State<cancelled_task_screen> {
     return   Visibility(
       visible: !_getCancelledTaskListInProgress,
       replacement: RefreshIndicator(
-          onRefresh:() async{
-            _getCancelledTask();
-          },
-          child: CircularProgressIndicator()),
+            onRefresh:() async{
+              _getCancelledTask();
+            },
+            child: CircularProgressIndicator()),
+
       child: ListView.separated(
         itemBuilder: (context, index) {
           return  TaskCard(
