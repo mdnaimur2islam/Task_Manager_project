@@ -47,7 +47,7 @@ class _new_task_screenState extends State<new_task_screen> {
             Expanded(
               child: Visibility(
                 visible: !_getNewTaskInProgress,
-                replacement: const CircularProgressIndicator(),
+                replacement: Center(child:CenterCircularProgress()) ,
                 child: ListView.separated(
                   itemBuilder: (context, index) {
                    return  TaskCard(taskModel: _newTaskList[index],
@@ -138,5 +138,18 @@ class _new_task_screenState extends State<new_task_screen> {
     setState(() {});
   }
 
+}
+
+class CenterCircularProgress extends StatelessWidget {
+  const CenterCircularProgress({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
+  }
 }
 
